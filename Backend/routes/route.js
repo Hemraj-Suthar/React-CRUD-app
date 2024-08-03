@@ -1,11 +1,10 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import employee from '../model/schema.js';
 
 const router = express.Router();
 
 // GET route to fetch all employees
-router.get("/allEmpyolee", async (req, res) => {
+router.get("/allEmployee", async (req, res) => {
     try {
         const response = await employee.find();
         res.json(response);
@@ -70,7 +69,7 @@ router.put("/Employee/:id", async (req, res) => {
 
 });
 
-router.delete("/deleteEmpyolee/:id", async (req, res) => {
+router.delete("/deleteEmployee/:id", async (req, res) => {
    const { id } = req.params;
 
    try {

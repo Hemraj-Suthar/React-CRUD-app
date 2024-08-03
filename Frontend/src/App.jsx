@@ -2,8 +2,8 @@ import React from 'react';
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import View from './components/View';
-import Edit from './components/Edit';
+import View from './pages/View';
+import Edit from './pages/Edit';
 
 function App() {
     return (

@@ -2,7 +2,7 @@ import axios from "axios"
 
 const getAllStudent = async () => {
     try {
-        const empyolees = await axios.get("http://localhost:5000/api/allEmpyolee");
+        const empyolees = await axios.get("http://localhost:5000/api/allEmployee");
         // console.log(empyolees.data);
         return empyolees.data;
     } catch (error) {
@@ -12,7 +12,7 @@ const getAllStudent = async () => {
 
 const handleDelete = async (id) => {
     try {
-        const empyolees = await axios.delete(`http://localhost:5000/api/deleteEmpyolee/:${id}`);
+        const empyolees = await axios.delete(`http://localhost:5000/api/deleteEmployee/:${id}`);
         return empyolees.data;
     } catch (error) {
         console.log("Something is Wrong", error);

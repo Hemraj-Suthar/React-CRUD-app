@@ -16,7 +16,7 @@ const List = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        await axios.delete(`http://localhost:5000/api/deleteEmpyolee/${id}`);
+        await axios.delete(`http://localhost:5000/api/deleteEmployee/${id}`);
         var newstudent = employees.filter((item) => {
             return item.id !== id;
         });

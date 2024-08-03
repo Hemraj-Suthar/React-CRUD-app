@@ -10,7 +10,7 @@ export const View = () => {
     useEffect(() => {
         async function getEmployee() {
             try {
-                const response = await axios.get(`http://localhost:5000/api/Empyolee/${id}`);
+                const response = await axios.get(`http://localhost:5000/api/Employee/${id}`);
                 setEmployee(response.data);
             } catch (error) {
                 console.log("Something is Wrong", error);
