@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { getAllStudent } from "../services/api";
+import toast from 'react-hot-toast';
 
 const Edit = () => {
     const { id } = useParams();
@@ -31,7 +30,8 @@ const Edit = () => {
     async function formSubmit(e) {
         e.preventDefault();
         await axios.put(`http://localhost:5000/api/Employee/${id}`, employee);
-        // history.push('/')
+        toast.success('Employee successfully updated!');
+        navigate("/");
     }
 
     function handleClick() {
@@ -45,10 +45,10 @@ const Edit = () => {
             </div>
             <div className="flex justify-center">
                 <div className="w-full max-w-md">
-                    <div className="text-center bg-green-600 text-white p-4 mb-4">
+                    <div className="text-center bg-green-600 text-white p-4">
                         <h4 className="text-2xl">Edit Employee</h4>
                     </div>
-                    <form>
+                    <form className="p-4">
                         <div className="grid grid-cols-1 gap-4">
                             <div>
                                 <label htmlFor="id" className="block text-sm font-medium text-gray-700">ID</label>

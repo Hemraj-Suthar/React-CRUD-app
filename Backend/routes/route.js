@@ -74,7 +74,8 @@ router.delete("/deleteEmployee/:id", async (req, res) => {
 
    try {
         const deletedEmployee = await employee.findByIdAndDelete(id);
-
+        console.log(deletedEmployee);
+        
         if (!deletedEmployee) {
             return res.status(404).send({message: "Employee not found"});
         }
