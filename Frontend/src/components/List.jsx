@@ -12,12 +12,13 @@ const List = () => {
             setEmployees(allEmpyolee.data);
         }
         fetchEmpyolee();
-    }, [employees]);
+    }, []);
 
     const deleteEmployee = async (id) => {
         try {
             await axios.delete(`http://localhost:5000/api/deleteEmployee/${id}`);
             toast.success('Employee successfully deleted!');
+            setEmployees(employees.filter(employee => employee._id !== id));    
         } catch (error) {
             console.error("Error deleting employee:", error.message);
         }

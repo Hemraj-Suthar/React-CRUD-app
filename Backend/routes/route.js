@@ -79,7 +79,7 @@ router.delete("/deleteEmployee/:id", async (req, res) => {
         if (!deletedEmployee) {
             return res.status(404).send({message: "Employee not found"});
         }
-        req.send({message: "Employee deleted successfully"});
+        res.send({message: "Employee deleted successfully"});
    } catch (error) {
         res.status(500).send({ message: error.message });
    }
