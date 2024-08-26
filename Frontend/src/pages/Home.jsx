@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import List from "../components/List";
+import toast from 'react-hot-toast';
 
 const Home = () => {
     const [employee, setEmployee] = useState({
@@ -16,12 +17,16 @@ const Home = () => {
 
     async function formSubmit(e) {
         e.preventDefault();
-        console.log(employee);
-        try {
-            await axios.post(`http://localhost:5000/api/addEmployee`, employee);
-            setStatus(true);
-        } catch (error) {
-            console.log("Something is Wrong", error.message);
+        if (employee.name != '' && employee.email != '') {
+            try {
+                await axios.post(`http://localhost:5000/api/addEmployee`, employee);
+                toast.success('Employee successfully added!');
+                setStatus(true);
+            } catch (error) {
+                console.log("Something is Wrong", error.message);
+            }
+        } else {
+            toast.error('Please enter vaild input!');
         }
     }
 
@@ -30,16 +35,16 @@ const Home = () => {
     }
 
     return (
-        <>
-            <div className="text-center bg-purple-400 text-white p-4 mb-4">
-                <h2 className="text-4xl">React CRUD Opertaion</h2>
+        <div className="">
+            <div className="text-center bg-purple-400 text-gray p-4">
+                <h2 className="text-4xl font-bold">React CRUD Opertaion</h2>
             </div>
-            <div className="flex flex-col md:flex-row justify-center gap-8">
+            <div className="flex flex-col md:flex-row justify-center">
                 <div className="w-full md:w-1/2">
-                    <div className="text-center bg-green-400 text-white p-4 mb-4">
-                        <h4 className="text-2xl">Add Employee</h4>
+                    <div className="text-center bg-green-400 text-white p-4">
+                        <h4 className="text-2xl font-semibold">Add Employee</h4>
                     </div>
-                    <form noValidate onSubmit={formSubmit}>
+                    <form noValidate onSubmit={formSubmit} className="p-4">
                         <div className="space-y-4">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Employee Name</label>
@@ -60,7 +65,7 @@ const Home = () => {
                     <List />
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

@@ -6,7 +6,7 @@ export const View = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [employee, setEmployee] = useState([]);
-
+    
     useEffect(() => {
         async function getEmployee() {
             try {
@@ -17,7 +17,7 @@ export const View = () => {
             }
         } 
         getEmployee();
-    },[]);
+    },[id]);
 
     const handleClick = () => {
         navigate("/");
@@ -25,16 +25,18 @@ export const View = () => {
 
     return (
         <>
-            <div className="text-center bg-orange-400 text-white p-4 mb-4">
+            <div className="text-center bg-orange-400 text-white p-4">
                 <h4 className="text-2xl">Employee Details</h4>
             </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead>
                         <tr className="bg-gray-700">
-                            <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">No.</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Id No.</th>
                             <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Name</th>
                             <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Email</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Created at</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Updated at</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +44,8 @@ export const View = () => {
                             <td className="px-6 py-4 text-center whitespace-nowrap">{employee._id}</td>
                             <td className="px-6 py-4 text-center whitespace-nowrap">{employee.name}</td>
                             <td className="px-6 py-4 text-center whitespace-nowrap">{employee.email}</td>
+                            <td className="px-6 py-4 text-center whitespace-nowrap uppercase">{new Date(employee.createdAt).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })}</td>
+                            <td className="px-6 py-4 text-center whitespace-nowrap uppercase">{new Date(employee.updatedAt).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })}</td>
                         </tr>                          
                     </tbody>
                 </table>
