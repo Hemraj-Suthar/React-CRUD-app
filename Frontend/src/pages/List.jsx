@@ -69,6 +69,11 @@ const List = () => {
                     </tbody>
                 </table>
             </div>
+            <div className="m-3 text-center">
+                <Link to={`/`}>
+                    <button className="py-2 px-4 bg-blue-600 text-white font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Back To Home</button>
+                </Link>
+            </div>
         </>
     );
 };

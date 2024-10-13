@@ -2,6 +2,7 @@ import React from 'react';
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import List from './pages/List';
 import View from './pages/View';
 import Edit from './pages/Edit';
 import { Toaster } from 'react-hot-toast';
@@ -11,6 +12,7 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/employeeList" element={<List />} />
                 <Route path="/view/:id" element={<View />} />
                 <Route path="/edit/:id" element={<Edit />} />
             </Routes>

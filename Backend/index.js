@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import connectDB from './Database/connectDB.js';
 import router from './routes/route.js';
 import employee from './model/schema.js';
@@ -14,6 +15,8 @@ app.use(cors());
 
 // JSON
 app.use(express.json());
+
+app.use('/uploads', express.static(path.join('uploads')));
 
 // Database connection
 connectDB();

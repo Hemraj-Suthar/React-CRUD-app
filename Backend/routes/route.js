@@ -1,4 +1,6 @@
 import express from 'express';
+import multer from 'multer';
+import path from 'path';
 import employee from '../model/schema.js';
 
 const router = express.Router();
@@ -30,19 +32,39 @@ router.get("/Employee/:id", async (req, res) => {
     }
 });
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join('uploads/')); // Adjusted to use path.join for better path handling
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`); // Define the file name
+    },
+});
+
+const upload = multer({ storage });
+
 // POST route to add a new employee
-router.post("/addEmployee", async (req, res) => {
-    const { name, email } = req.body;
-    const employeeData = new employee({
-        name: name,
-        email: email
-    });
+router.post("/addEmployee", upload.single('employee_image'), async (req, res) => {
+    console.log('File:', req.file);
+
+    if (!req.file) {
+        return res.status(400).send({ message: 'File not uploaded' });
+    }
+
+    const employeeRowData = {
+        name: req.body.name,
+        email: req.body.email,
+        gender: req.body.gender,
+        employee_image: req.file.path,
+    };
+
+    const employeeData = new employee(employeeRowData);
     
     try {
         const savedEmployee = await employeeData.save();
         res.status(201).send(savedEmployee);
     } catch (error) {
-        res.status(400).send({message: error.message});
+        res.status(400).send({ message: error.message });
     }
 });
 

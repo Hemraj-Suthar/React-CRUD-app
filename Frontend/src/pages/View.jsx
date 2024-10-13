@@ -20,7 +20,7 @@ export const View = () => {
     },[id]);
 
     const handleClick = () => {
-        navigate("/");
+        navigate("/employeeList");
     }
 
     return (
@@ -32,25 +32,38 @@ export const View = () => {
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead>
                         <tr className="bg-gray-700">
-                            <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Id No.</th>
+                            {/* <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Id No.</th> */}
                             <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Name</th>
                             <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Email</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Gender</th>
                             <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Created at</th>
                             <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Updated at</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className="bg-white divide-y divide-gray-200">
-                            <td className="px-6 py-4 text-center whitespace-nowrap">{employee._id}</td>
+                            {/* <td className="px-6 py-4 text-center whitespace-nowrap">{employee._id}</td> */}
                             <td className="px-6 py-4 text-center whitespace-nowrap">{employee.name}</td>
                             <td className="px-6 py-4 text-center whitespace-nowrap">{employee.email}</td>
+                            <td className="px-6 py-4 text-center whitespace-nowrap">{employee.gender}</td>
                             <td className="px-6 py-4 text-center whitespace-nowrap uppercase">{new Date(employee.createdAt).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })}</td>
                             <td className="px-6 py-4 text-center whitespace-nowrap uppercase">{new Date(employee.updatedAt).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })}</td>
                         </tr>                          
                     </tbody>
                 </table>
-                <div className="m-3 text-center">
-                    <button className="py-2 px-4 bg-blue-600 text-white font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={handleClick}>Back To Home</button>
+                <div className="mt-4">
+                    {employee.employee_image && (
+                        <img
+                            src={`http://localhost:5000/${employee.employee_image}`}
+                            alt="Employee"
+                            className="block mx-auto w-48 h-48 object-cover rounded-md shadow-lg"
+                        />
+                    )}
+                </div>
+                <div className="mt-6 text-center">
+                    <button className="py-2 px-4 bg-blue-600 text-white font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={handleClick}>
+                        Back To Employee List                
+                    </button>
                 </div>
             </div>
         </>

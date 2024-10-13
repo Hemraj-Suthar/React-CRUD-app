@@ -35,7 +35,7 @@ const Edit = () => {
     }
 
     function handleClick() {
-        navigate("/");
+        navigate("/employeeList");
     }
 
     return (
@@ -68,7 +68,9 @@ const Edit = () => {
                         </div>
                     </form>
                     <div className="mt-6 text-center">
-                        <button onClick={handleClick} className="py-2 px-4 bg-gray-600 text-white font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Back to Home</button>
+                        <button onClick={handleClick} className="py-2 px-4 bg-gray-600 text-white font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Back to Employee List
+                        </button>
                     </div>
                 </div>
             </div>
